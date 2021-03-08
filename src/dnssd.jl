@@ -1,7 +1,6 @@
 function dns_service_browse(service_type)
 
     result = Channel{DNSService}(0)
-    @show result
     
     # Browse for service instances and display output in zone file format.
     p = open(`dns-sd -Z $service_type`)
