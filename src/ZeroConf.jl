@@ -57,8 +57,8 @@ function unregister_dns_service(name)
 end
 
 
-const dnssd_is_installed = Sys.which("dns-sd") != Nothing
-const avahi_is_installed = Sys.which("avahi-publish") != Nothing
+const dnssd_is_installed = Sys.which("dns-sd") != nothing
+const avahi_is_installed = Sys.which("avahi-publish") != nothing
 
 @static if dnssd_is_installed
     include("dnssd.jl")
