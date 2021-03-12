@@ -24,7 +24,8 @@ function dns_service_browse(service_type)
            err.state == closed 
             # Ignore push to closed Channel error.
         else
-            @error err
+            exception=(err, catch_backtrace())
+            @error "Error reading `avahi-browse` output." exception
         end
     finally
         close(result)
