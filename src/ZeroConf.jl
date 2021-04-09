@@ -44,16 +44,16 @@ Register a DNS Service.
 register_dns_service(name, service_type, port)
 
 
-dns_process = Dict{String,Base.Process}()
+dns_process = Dict{Tuple{String,String},Base.Process}()
 
 """
-    unregister_dns_service(name)
+    unregister_dns_service(name, service_type)
 
 Cancel a service registered by `register_dns_service`.
 """
-function unregister_dns_service(name)
+function unregister_dns_service(name, service_type)
     global dns_process
-    kill(dns_process[name])
+    kill(dns_process[(name, service_type)])
 end
 
 

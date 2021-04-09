@@ -41,7 +41,7 @@ end
 
 function register_dns_service(name, service_type, port)
     global dns_process
-    dns_process[name] =
+    dns_process[(name, service_type)] =
     open(`dns-sd -R $name $service_type local $port`)
     nothing
 end
