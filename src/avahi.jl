@@ -4,6 +4,8 @@ function dns_service_browse(service_type)
 
     p = open(`avahi-browse --no-fail --parsable --resolve $service_type`)
 
+    atexit(()->kill(p, Base.SIGKILL))
+
     @async try
         while isopen(result) &&
               (process_running(p) || bytesavailable(p) > 0)

@@ -5,6 +5,8 @@ function dns_service_browse(service_type)
     # Browse for service instances and display output in zone file format.
     p = open(`dns-sd -Z $service_type`)
 
+    atexit(()->kill(p, Base.SIGKILL))
+
     @async try
         while isopen(result) &&
               (process_running(p) || bytesavailable(p) > 0)
